@@ -19,7 +19,7 @@ function App() {
     if (import.meta.env.VITE_API_URL) {
       return import.meta.env.VITE_API_URL;
     }
-    // If running on same domain (Replit), use relative path
+    // If in production (Vercel, Replit, etc), use same domain
     if (window.location.hostname !== 'localhost') {
       return window.location.origin;
     }
@@ -28,7 +28,7 @@ function App() {
   };
 
   const apiUrl = getApiUrl();
-  const apiHostname = apiUrl.includes('localhost') ? 'localhost' : new URL(apiUrl).hostname;
+  const apiHostname = new URL(apiUrl).hostname;
 
   const { control } = useChatKit({
     api: {
