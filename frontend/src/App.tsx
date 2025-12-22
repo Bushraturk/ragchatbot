@@ -13,8 +13,21 @@ function App() {
     setIsReady(true)
   }, [])
 
-  // Get API URL from environment variable or use localhost for development
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  // Get API URL from environment variable or detect from current location
+  const getApiUrl = () => {
+    // If VITE_API_URL is set, use it
+    if (import.meta.env.VITE_API_URL) {
+      return import.meta.env.VITE_API_URL;
+    }
+    // If running on same domain (Replit), use relative path
+    if (window.location.hostname !== 'localhost') {
+      return window.location.origin;
+    }
+    // Default to localhost for development
+    return 'http://localhost:8000';
+  };
+
+  const apiUrl = getApiUrl();
   const apiHostname = apiUrl.includes('localhost') ? 'localhost' : new URL(apiUrl).hostname;
 
   const { control } = useChatKit({

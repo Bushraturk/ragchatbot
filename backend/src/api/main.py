@@ -1,6 +1,8 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from backend.src.api.routes import chat, documents, sessions
 from backend.src.core.config import settings
 
@@ -41,3 +43,18 @@ app.include_router(sessions.router, prefix="/api", tags=["sessions"])
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "timestamp": "2025-12-16", "services": {"database": True, "vector_store": True, "llm_provider": True}}
+
+# Serve static files (frontend) if available
+static_dir = os.path.join(os.path.dirname(__file__), "../../static")
+if os.path.exists(static_dir):
+    app.mount("/assets", StaticFiles(directory=os.path.join(static_dir, "assets")), name="assets")
+
+    @app.get("/{full_path:path}")
+    async def serve_frontend(full_path: str):
+        # Serve index.html for all routes (SPA support)
+        if full_path.startswith("api/") or full_path == "health":
+            return {"error": "Not found"}
+        index_file = os.path.join(static_dir, "index.html")
+        if os.path.exists(index_file):
+            return FileResponse(index_file)
+        return {"error": "Frontend not built"}
