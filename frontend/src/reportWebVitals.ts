@@ -1,17 +1,6 @@
-import type { ReportHandler } from 'web-vitals'
-
-const reportWebVitals = (onPerfEntry?: ReportHandler) => {
-  if (onPerfEntry && onPerfEntry instanceof Function) {
-    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-      getCLS(onPerfEntry);
-      getFID(onPerfEntry);
-      getFCP(onPerfEntry);
-      getLCP(onPerfEntry);
-      getTTFB(onPerfEntry);
-    }).catch(() => {
-      // web-vitals not available, skip
-    });
-  }
+// Performance monitoring - optional, can be removed
+const reportWebVitals = () => {
+  // No-op function for compatibility
 };
 
 export default reportWebVitals;
