@@ -11,13 +11,10 @@ cd ../frontend
 npm install
 npm run build
 
-# Copy frontend build to backend static folder
-echo "Setting up static files..."
-cd ..
-mkdir -p backend/static
-cp -r frontend/dist/* backend/static/
+# Copy frontend build to backend static folder (main.py serves from frontend/dist)
+echo "Frontend built successfully..."
 
-# Start backend server (which will also serve frontend)
-echo "Starting server..."
-cd backend
-uvicorn src.api.main:app --host 0.0.0.0 --port 8000
+# Start backend server using main.py (includes ChatKit + serves frontend)
+echo "Starting RAG ChatKit server..."
+cd ../backend
+python main.py
