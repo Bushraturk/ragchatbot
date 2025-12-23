@@ -11,11 +11,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend code
 COPY backend/ ./backend/
 
-# Expose port
-EXPOSE 7860
+# Expose port (Koyeb automatically sets PORT env variable)
+EXPOSE 8000
 
 # Set working directory
 WORKDIR /app/backend
 
-# Start server
-CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "7860"]
+# Start server using main.py (which includes ChatKit integration)
+CMD ["python", "main.py"]
