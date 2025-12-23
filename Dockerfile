@@ -2,16 +2,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy backend requirements
-COPY backend/requirements.txt .
-
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy backend code
+# Copy backend code first
 COPY backend/ ./backend/
 
-# Expose port (Koyeb automatically sets PORT env variable)
+# Install dependencies from backend directory
+RUN pip install --no-cache-dir -r backend/requirements.txt
+
+# Expose port
 EXPOSE 8000
 
 # Set working directory
