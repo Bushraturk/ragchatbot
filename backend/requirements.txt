@@ -16,4 +16,6 @@ beautifulsoup4==4.12.2
 lxml==4.9.3
 tqdm==4.66.1
 gunicorn==21.2.0
-openai-chatkit==1.0.1
+openai-chatkit>=1.4.0
+openai-agents>=0.1.0
+openai>=1.0.0

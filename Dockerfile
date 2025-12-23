@@ -6,8 +6,8 @@ WORKDIR /app
 COPY backend/ ./backend/
 
 # Install dependencies from backend directory
-RUN pip install --no-cache-dir -r backend/requirements.txt && \
-    pip install --no-cache-dir chatkit
+# Note: openai-chatkit package is already in requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # Expose port
 EXPOSE 8000
