@@ -1,6 +1,16 @@
+---
+title: RAG ChatKit Gemini
+emoji: 🤖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 8000
+pinned: false
+---
+
 # RAG ChatKit Gemini
 
-A Retrieval-Augmented Generation (RAG) chatbot that allows users to ask questions about book content. The system uses Google's Gemini API through LiteLLM, with Cohere embeddings, Qdrant vector storage, and Neon Postgres for conversation history.
+A Retrieval-Augmented Generation (RAG) chatbot that allows users to ask questions about Physical AI & Robotics course content. The system uses Google's Gemini API through LiteLLM, with Cohere embeddings, Qdrant vector storage, and Neon Postgres for conversation history.
 
 ## Features
 
