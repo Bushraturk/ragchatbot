@@ -34,7 +34,7 @@ function App() {
     api: {
       url: `${apiUrl}/chatkit`,
       domainKey: apiHostname,
-      publicKey: 'domain_pk_694bfb181e408190b101b6529a04b06802c8b535dda50087',
+      publicKey: 'domain_pk_694ed62edc7481939d7bde9661c9b25901678a3d4ed53d97',
     },
     initialThread: initialThread,
     theme: {
